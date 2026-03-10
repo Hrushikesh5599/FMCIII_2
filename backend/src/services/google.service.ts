@@ -1,4 +1,4 @@
-import { google } from 'googleapis';
+import { google, Auth } from 'googleapis';
 import { config } from '../config';
 import { logger } from '../utils/logger';
 
@@ -9,17 +9,17 @@ interface StartupData {
 }
 
 export class GoogleService {
-  private getAuthClient(tokens: Record<string, unknown>) {
+  private getAuthClient(tokens: Auth.Credentials) {
     const auth = new google.auth.OAuth2(
       config.google.clientId,
       config.google.clientSecret,
       config.google.redirectUri,
     );
-    auth.setCredentials(tokens as Parameters<typeof auth.setCredentials>[0]);
+    auth.setCredentials(tokens);
     return auth;
   }
 
-  async createDriveFolder(startupName: string, tokens: Record<string, unknown>): Promise<string> {
+  async createDriveFolder(startupName: string, tokens: Auth.Credentials): Promise<string> {
     try {
       const auth = this.getAuthClient(tokens);
       const drive = google.drive({ version: 'v3', auth });
@@ -41,7 +41,7 @@ export class GoogleService {
     }
   }
 
-  async createOfferLetter(startupName: string, tokens: Record<string, unknown>): Promise<string> {
+  async createOfferLetter(startupName: string, tokens: Auth.Credentials): Promise<string> {
     try {
       const auth = this.getAuthClient(tokens);
       const docs = google.docs({ version: 'v1', auth });
@@ -75,7 +75,7 @@ export class GoogleService {
     }
   }
 
-  async sendAcceptanceEmail(startup: StartupData, tokens: Record<string, unknown>): Promise<void> {
+  async sendAcceptanceEmail(startup: StartupData, tokens: Auth.Credentials): Promise<void> {
     try {
       const auth = this.getAuthClient(tokens);
       const gmail = google.gmail({ version: 'v1', auth });

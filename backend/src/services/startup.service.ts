@@ -3,6 +3,7 @@ import { NotFoundError, ValidationError } from '../utils/errors';
 import { logger } from '../utils/logger';
 import { GoogleService } from './google.service';
 import { UserRepository } from '../repositories/user.repository';
+import { Auth } from 'googleapis';
 
 interface CreateStartupDto {
   name: string;
@@ -64,7 +65,7 @@ export class StartupService {
     });
   }
 
-  async acceptStartup(startupId: string, adminTokens: Record<string, unknown>) {
+  async acceptStartup(startupId: string, adminTokens: Auth.Credentials) {
     const startup = await this.startupRepo.findById(startupId);
     if (!startup) throw new NotFoundError('Startup');
 

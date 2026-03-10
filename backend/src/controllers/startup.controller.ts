@@ -1,6 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { StartupService } from '../services/startup.service';
 import { AuthenticatedRequest } from '../types';
+import { Auth } from 'googleapis';
 
 const startupService = new StartupService();
 
@@ -42,7 +43,7 @@ export const updateStartup = async (req: AuthenticatedRequest, res: Response, ne
 
 export const acceptStartup = async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const result = await startupService.acceptStartup(req.params.id, req.body.googleTokens || {});
+    const result = await startupService.acceptStartup(req.params.id, (req.body.googleTokens || {}) as Auth.Credentials);
     res.json({ success: true, data: result });
   } catch (error) {
     next(error);

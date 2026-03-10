@@ -12,7 +12,6 @@ export const config = {
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     redirectUri: process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3000/auth/google/callback',
     driveFolderId: process.env.GOOGLE_DRIVE_FOLDER || '',
-    gmailApiKey: process.env.GMAIL_API_KEY || '',
   },
   databaseUrl: process.env.DATABASE_URL || '',
 };

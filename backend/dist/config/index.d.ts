@@ -9,7 +9,6 @@ export declare const config: {
         clientSecret: string;
         redirectUri: string;
         driveFolderId: string;
-        gmailApiKey: string;
     };
     databaseUrl: string;
 };

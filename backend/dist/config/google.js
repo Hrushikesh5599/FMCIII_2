@@ -10,7 +10,6 @@ exports.SCOPES = [
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/documents',
     'https://www.googleapis.com/auth/gmail.send',
-    'https://www.googleapis.com/auth/chat.spaces',
 ];
 const getAuthUrl = () => {
     return exports.oauth2Client.generateAuthUrl({

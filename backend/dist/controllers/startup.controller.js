@@ -45,7 +45,7 @@ const updateStartup = async (req, res, next) => {
 exports.updateStartup = updateStartup;
 const acceptStartup = async (req, res, next) => {
     try {
-        const result = await startupService.acceptStartup(req.params.id, req.body.googleTokens || {});
+        const result = await startupService.acceptStartup(req.params.id, (req.body.googleTokens || {}));
         res.json({ success: true, data: result });
     }
     catch (error) {

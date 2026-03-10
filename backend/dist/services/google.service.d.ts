@@ -1,3 +1,4 @@
+import { Auth } from 'googleapis';
 interface StartupData {
     id: string;
     name: string;
@@ -10,9 +11,9 @@ interface StartupData {
 }
 export declare class GoogleService {
     private getAuthClient;
-    createDriveFolder(startupName: string, tokens: Record<string, unknown>): Promise<string>;
-    createOfferLetter(startupName: string, tokens: Record<string, unknown>): Promise<string>;
-    sendAcceptanceEmail(startup: StartupData, tokens: Record<string, unknown>): Promise<void>;
+    createDriveFolder(startupName: string, tokens: Auth.Credentials): Promise<string>;
+    createOfferLetter(startupName: string, tokens: Auth.Credentials): Promise<string>;
+    sendAcceptanceEmail(startup: StartupData, tokens: Auth.Credentials): Promise<void>;
 }
 export {};
 //# sourceMappingURL=google.service.d.ts.map

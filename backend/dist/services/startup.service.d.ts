@@ -1,6 +1,7 @@
 import { StartupRepository } from '../repositories/startup.repository';
 import { GoogleService } from './google.service';
 import { UserRepository } from '../repositories/user.repository';
+import { Auth } from 'googleapis';
 interface CreateStartupDto {
     name: string;
     domain?: string;
@@ -168,7 +169,7 @@ export declare class StartupService {
         description: string | null;
         domain: string | null;
     }>;
-    acceptStartup(startupId: string, adminTokens: Record<string, unknown>): Promise<{
+    acceptStartup(startupId: string, adminTokens: Auth.Credentials): Promise<{
         success: boolean;
         folderId: string;
         offerLetterUrl: string;

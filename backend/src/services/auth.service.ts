@@ -64,7 +64,7 @@ export class AuthService {
       });
     }
 
-    const roleRecord = await this.userRepo.findRoleByName(user.roleId) || defaultRole;
+    const roleRecord = await this.userRepo.findRoleById(user.roleId) || defaultRole;
 
     const token = signToken({
       id: user.id,

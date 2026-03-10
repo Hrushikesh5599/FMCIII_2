@@ -36,6 +36,10 @@ export class UserRepository {
     return this.db.role.findUnique({ where: { name } });
   }
 
+  async findRoleById(id: string) {
+    return this.db.role.findUnique({ where: { id } });
+  }
+
   async createRole(name: string, description?: string) {
     return this.db.role.create({ data: { name, description } });
   }
